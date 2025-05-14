@@ -1,14 +1,8 @@
-import 'package:anybank/services/account_service.dart';
+import 'package:anybank/screens/account_screen.dart';
 
 void main() {
-  AccountService service = AccountService();
+  AccountScreen accountScreen = AccountScreen();
 
-  print(service.getAll());
-  // sendDataAsync({
-  //   "id": "NEW001",
-  //   "firstName": "Kurt",
-  //   "lastName": "Flutter",
-  //   "balance": 5000,
-  // }, urlPost);
-
+  accountScreen.initializeStream();
+  accountScreen.runChatBot();
 }

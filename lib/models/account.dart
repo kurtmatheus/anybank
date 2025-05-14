@@ -47,11 +47,21 @@ class Account {
 
   @override
   bool operator ==(covariant Account other) {
-    if(identical(this, other)) return true;
+    if (identical(this, other)) return true;
 
     return other.id == id &&
-    other.name == name &&
-    other.lastName == lastName &&
-    other.balance == balance;
+        other.name == name &&
+        other.lastName == lastName &&
+        other.balance == balance;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^ name.hashCode ^ lastName.hashCode ^ balance.hashCode;
+  }
+
+  @override
+  String toString() {
+    return "Conta de Nº: $id\nNome: $name\nSaldo: $balance";
   }
 }
