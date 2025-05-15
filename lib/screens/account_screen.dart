@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:anybank/models/account.dart';
 import 'package:anybank/services/account_service.dart';
+import 'package:http/http.dart';
 
 class AccountScreen {
   final AccountService _service = AccountService();
@@ -52,21 +53,32 @@ class AccountScreen {
   }
 
   _getAllAccounts() async {
-    List<Account> accounts = await _service.getAll();
+    try {
+      List<Account> accounts = await _service.getAll();
 
-    for (Account acc in accounts) {
-      print(acc.toString());
-      print("-------------");
+      for (Account acc in accounts) {
+        print(acc.toString());
+        print("-------------");
+      }
+    } on ClientException catch (clientException) {
+      print("Não foi Possível Alcançar o Servidor.");
+      print("Tente novamente Mais Tarde.");
+    }
+     on Exception {
+      print("Não foi Possível Recuperar as Contas.");
+      print("Tente novamente Mais Tarde.");
+    } finally {
+    print("${DateTime.now()}: ocorreu uma tentativa de Consulta");
     }
   }
 
   _addAccount() async {
     _service.addAccount(
       Account.fromMap({
-        "id": "ID012",
-        "name": "Harpia",
-        "lastName": "Flasvia",
-        "balance": 5000.0,
+        "id": "ID014",
+        "name": "Hatii",
+        "lastName": "de Lutie",
+        "balance": 500.0,
       }),
     );
   }
