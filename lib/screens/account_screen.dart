@@ -63,23 +63,29 @@ class AccountScreen {
     } on ClientException catch (clientException) {
       print("Não foi Possível Alcançar o Servidor.");
       print("Tente novamente Mais Tarde.");
-    }
-     on Exception {
+      print(clientException.message);
+      print(clientException.uri);
+    } on Exception {
       print("Não foi Possível Recuperar as Contas.");
       print("Tente novamente Mais Tarde.");
     } finally {
-    print("${DateTime.now()}: ocorreu uma tentativa de Consulta");
+      print("${DateTime.now()}: ocorreu uma tentativa de Consulta");
     }
   }
 
   _addAccount() async {
-    _service.addAccount(
-      Account.fromMap({
-        "id": "ID014",
-        "name": "Hatii",
-        "lastName": "de Lutie",
-        "balance": 500.0,
-      }),
-    );
+    try {
+      _service.addAccount(
+        Account.fromMap({
+          "id": "ID014",
+          "name": "Hatii",
+          "lastName": "de Lutie",
+          "balance": 500.0,
+          "type": "Brigadeiro"
+        }),
+      );
+    } on Exception {
+      print("Falha ao tentar Adicionar Conta."); 
+    }
   }
 }

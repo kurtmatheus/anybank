@@ -5,25 +5,28 @@ class Account {
   String name;
   String lastName;
   double balance;
+  String type;
 
   Account({
     required this.id,
     required this.name,
     required this.lastName,
     required this.balance,
+    required this.type
   });
 
   factory Account.fromMap(Map<String, dynamic> map) {
     return Account(
-      id: map["id"],
-      name: map["name"],
-      lastName: map["lastName"],
-      balance: map["balance"],
+      id: map["id"] as String,
+      name: map["name"] as String,
+      lastName: map["lastName"] as String,
+      balance: map["balance"] as double,
+      type: map["type"] as String
     );
   }
 
   Map<String, dynamic> toMap() {
-    return {"id": id, "name": name, "lastName": lastName, "balance": balance};
+    return {"id": id, "name": name, "lastName": lastName, "balance": balance, type: "type"};
   }
 
   Account copyWith({
@@ -31,12 +34,14 @@ class Account {
     String? name,
     String? lastName,
     double? balance,
+    String? type
   }) {
     return Account(
       id: id ?? this.id,
       name: name ?? this.name,
       lastName: lastName ?? this.lastName,
       balance: balance ?? this.balance,
+      type: type ?? this.type
     );
   }
 
@@ -52,7 +57,8 @@ class Account {
     return other.id == id &&
         other.name == name &&
         other.lastName == lastName &&
-        other.balance == balance;
+        other.balance == balance &&
+        other.type == type;
   }
 
   @override
