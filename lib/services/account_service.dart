@@ -8,7 +8,7 @@ import 'package:http/http.dart';
 class AccountService {
   final StreamController<String> _stmController = StreamController<String>();
   Stream<String> get streamInfos => _stmController.stream;
-  String url = "https://api.github.com.br/gists/52403cf53a5ce5a94e6b9529d447c3ef";
+  String url = "https://api.github.com/gists/52403cf53a5ce5a94e6b9529d447c3ef";
 
   Future<List<Account>> getAll() async {
     Response response = await get(Uri.parse(url));

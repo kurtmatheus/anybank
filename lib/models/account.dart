@@ -5,14 +5,14 @@ class Account {
   String name;
   String lastName;
   double balance;
-  String type;
+  String? type;
 
   Account({
     required this.id,
     required this.name,
     required this.lastName,
     required this.balance,
-    required this.type
+    this.type
   });
 
   factory Account.fromMap(Map<String, dynamic> map) {
@@ -21,12 +21,12 @@ class Account {
       name: map["name"] as String,
       lastName: map["lastName"] as String,
       balance: map["balance"] as double,
-      type: map["type"] as String
+      type: (map["type"] != null) ? map["type"] as String : null
     );
   }
 
   Map<String, dynamic> toMap() {
-    return {"id": id, "name": name, "lastName": lastName, "balance": balance, type: "type"};
+    return {"id": id, "name": name, "lastName": lastName, "balance": balance, "type": type};
   }
 
   Account copyWith({
@@ -41,7 +41,7 @@ class Account {
       name: name ?? this.name,
       lastName: lastName ?? this.lastName,
       balance: balance ?? this.balance,
-      type: type ?? this.type
+      type: type
     );
   }
 
