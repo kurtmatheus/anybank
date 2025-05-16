@@ -31,7 +31,7 @@ class Transaction {
       "id": id,
       "senderAccountId": senderAccountId,
       "receiverAccountId": receiverAccountId,
-      "date": date,
+      "date": date.toString(),
       "amount": amount,
       "taxes": taxes,
     };

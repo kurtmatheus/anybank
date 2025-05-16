@@ -29,8 +29,12 @@ class AccountService {
 
     accounts.add(account);
 
-    String content = json.encode(accounts.map((acc) => acc.toMap()).toList());
+    await save(accounts);
+  }
 
+  save(List<Account> accounts) async {
+    String content = json.encode(accounts.map((acc) => acc.toMap()).toList());
+    
     Response response = await post(
       Uri.parse(url),
       headers: {
@@ -46,11 +50,19 @@ class AccountService {
         },
       }),
     );
-
+    
     if (response.statusCode.toString()[0] == "2") {
-      _stmController.add("${DateTime.now()}: Requisição POST bem sucedido para Conta de ${account.name}.");
+      _stmController.add("${DateTime.now()}: Requisição POST bem sucedido.");
     } else {
-      _stmController.add("${DateTime.now()}: Requisição POST falhou para Conta de ${account.name}.");
+      _stmController.add("${DateTime.now()}: Requisição POST falhou.");
     }
+  }
+
+  List<Account> update(List<Account> accounts, Account oldAccount, Account updateAccount) {
+    int index = accounts.indexOf(oldAccount);
+
+    accounts[index] = updateAccount;
+
+    return accounts;
   }
 }

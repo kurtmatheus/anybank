@@ -68,6 +68,6 @@ class Account {
 
   @override
   String toString() {
-    return "Conta de Nº: $id\nNome: $name\nSaldo: $balance";
+    return "Conta de Nº: $id\nNome: $name $lastName\nSaldo: $balance\n--------------------";
   }
 }

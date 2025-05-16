@@ -6,7 +6,7 @@ void main() {
   transactionService.makeTransaction(
     idSender: "ID001",
     idReceiver: "ID002",
-    amount: 50,
+    amount: 63,
   );
 
   // AccountScreen accountScreen = AccountScreen();

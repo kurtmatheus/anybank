@@ -1,4 +1,4 @@
-double calcularTaxa(String accountType, double amount) {
+double calculateTransactionTaxes(String accountType, double amount) {
   switch (accountType.toUpperCase()) {
     case "AMBROSIA":
       return amount * (0.5 / 100);
